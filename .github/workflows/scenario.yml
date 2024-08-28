@@ -28,5 +28,5 @@ jobs:
       - name: Run script
         run: python main.py
         env:
-          SCENARIO_NAME: ${{ github.event.inputs.scenarioName }}
-          INSURANCE_PRICE: ${{ github.event.inputs.insurancePrice }}
+          SCENARIO_NAME: ${{ .github.event.inputs.scenarioName }}
+          INSURANCE_PRICE: ${{ .github.event.inputs.insurancePrice }}
