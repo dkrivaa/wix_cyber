@@ -1,4 +1,3 @@
-import simpy
 
 from scenarioData import get_data
 
