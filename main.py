@@ -40,7 +40,7 @@ referred_cost = vars_dict.get('referredCost')
 lead_cost = vars_dict.get('leadCost')
 
 print('scenario name: ', scenario_name)
-print('insurance price: ', insurance_price)
+print('insurance price: ', insurance_price, type(insurance_price))
 
 # Access the parameters of the scenario (as entered by user in Wix)
 # scenario_name = os.environ.get('SCENARIO_NAME')
