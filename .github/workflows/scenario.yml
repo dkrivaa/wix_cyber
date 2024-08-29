@@ -4,7 +4,7 @@ on:
     inputs:
 
       json_vars:
-        description: 'JSON-encoded string of variables'
+        description: 'JSON-encoded string of scenario variables'
         required: true
 
 
