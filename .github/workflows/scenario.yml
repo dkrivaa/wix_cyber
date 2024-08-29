@@ -2,12 +2,104 @@ name: run_model
 on:
   workflow_dispatch:
     inputs:
+
       scenarioName:
         description: 'Name of the scenario'
         required: true
       insurancePrice:
         description: 'Price of insurance'
         required: true
+      riskAssessmentPrice:
+        description: 'Monthly Risk Assessment Price'
+        required: true
+      socPrice:
+        description: 'Monthly SOC price (per endpoint) ($)'
+        required: true
+      consultSecurityProductsHours:
+        description: 'Hours of Security Products Consulting (annual)'
+        required: true
+      consultSecurityProductsPrice:
+        description: 'Hourly Price - Security Products Consulting'
+        required: true
+      workerEducationHours:
+        description: 'Hours of Worker Education (annual)'
+        required: true
+      workerEducationPrice:
+        description: 'Hourly Price - Worker Education'
+        required: true
+      riskAssessmentInitialCost:
+        description: 'Initial Risk Assessment Cost ($)'
+        required: true
+      riskAssessmentMonthlyCost:
+        description: 'Monthly Risk Assessment Cost ($)'
+        required: true
+      socCost:
+        description: 'Cost of 24/7 SOC-SIEM services ($)'
+        required: true
+      consultSecurityProductsCost:
+        description: 'Hourly Cost - Security Products Consulting'
+        required: true
+      workerEducationCost:
+        description: 'Hourly Cost - Worker Education'
+        required: true
+      newCustomers:
+        description: 'New Customers (%)'
+        required: true
+      referredCustomers:
+        description: 'Referred Customers (%)'
+        required: true
+      leadCustomers:
+        description: 'Lead Customers (%)'
+        required: true
+      year1:
+        description: 'Year 1 - Monthly Growth (%)'
+        required: true
+      year2:
+        description: 'Year 2 - Monthly Growth (%)'
+        required: true
+      year3:
+        description: 'Year 3 - Monthly Growth (%)'
+        required: true
+      year4:
+        description: 'Year 4 - Monthly Growth (%)'
+        required: true
+      year5:
+        description: 'Year 5 - Monthly Growth (%)'
+        required: true
+      newCommission:
+        description: 'New Customer Insurance Commission (%)'
+        required: true
+      referredCommission:
+        description: 'Referred Customer Insurance Commission (%)'
+        required: true
+      leadCommission:
+        description: 'Lead Customer Insurance Commission (%)'
+        required: true
+      existingCommission:
+        description: 'Existing Customer Insurance Commission (%)'
+        required: true
+      newRisk:
+        description: 'New Customer Risk Perception (%)'
+        required: true
+      referredRisk:
+        description: 'Referred Customer Risk Perception (%)'
+        required: true
+      leadRisk:
+        description: 'Lead Customer Risk Perception (%)'
+        required: true
+      existingRisk:
+        description: 'Existing Customer Risk Perception (%)'
+        required: true
+      newCost:
+        description: 'Cost of New Customer Lead'
+        required: true
+      referredCost:
+        description: 'Cost of Referred Customer Lead'
+        required: true
+      leadCost:
+        description: 'Cost of Lead Customer Lead'
+        required: true
+
 
 jobs:
   run-script:
@@ -30,3 +122,34 @@ jobs:
         env:
           SCENARIO_NAME: ${{ github.event.inputs.scenarioName }}
           INSURANCE_PRICE: ${{ github.event.inputs.insurancePrice }}
+          RISK_ASSESSMENT_PRICE: ${{ github.event.inputs.riskAssessmentPrice }}
+          SOC_PRICE: ${{ github.event.inputs.socPrice }}
+          CONSULT_SECURITY_PRODUCTS_HOURS: ${{ github.event.inputs.consultSecurityProductsHours }}
+          CONSULT_SECURITY_PRODUCTS_PRICE: ${{ github.event.inputs.consultSecurityProductsPrice }}
+          WORKER_EDUCATION_HOURS: ${{ github.event.inputs.workerEducationHours }}
+          WORKER_EDUCATION_PRICE: ${{ github.event.inputs.workerEducationPrice }}
+          RISK_ASSESSMENT_INITIAL_COST: ${{ github.event.inputs.riskAssessmentInitialCost }}
+          RISK_ASSESSMENT_MONTHLY_COST: ${{ github.event.inputs.riskAssessmentMonthlyCost }}
+          SOC_COST: ${{ github.event.inputs.socCost }}
+          CONSULT_SECURITY_PRODUCTS_COST: ${{ github.event.inputs.consultSecurityProductsCost }}
+          WORKER_EDUCATION_COST: ${{ github.event.inputs.workerEducationCost }}
+          NEW_CUSTOMERS: ${{ github.event.inputs.newCustomers }}
+          REFERRED_CUSTOMERS: ${{ github.event.inputs.referredCustomers }}
+          LEAD_CUSTOMERS: ${{ github.event.inputs.leadCustomers }}
+          YEAR1: ${{ github.event.inputs.year1 }}
+          YEAR2: ${{ github.event.inputs.year2 }}
+          YEAR3: ${{ github.event.inputs.year3 }}
+          YEAR4: ${{ github.event.inputs.year4 }}
+          YEAR5: ${{ github.event.inputs.year5 }}
+          NEW_COMMISSION: ${{ github.event.inputs.newCommission }}
+          REFERRED_COMMISSION: ${{ github.event.inputs.referredCommission }}
+          LEAD_COMMISSION: ${{ github.event.inputs.leadCommission }}
+          EXISTING_COMMISSION: ${{ github.event.inputs.existingCommission }}
+          NEW_RISK: ${{ github.event.inputs.newRisk }}
+          REFERRED_RISK: ${{ github.event.inputs.referredRisk }}
+          LEAD_RISK: ${{ github.event.inputs.leadRisk }}
+          EXISTING_RISK: ${{ github.event.inputs.existingRisk }}
+          NEW_COST: ${{ github.event.inputs.newCost }}
+          REFERRED_COST: ${{ github.event.inputs.referredCost }}
+          LEAD_COST: ${{ github.event.inputs.leadCost }}
+
