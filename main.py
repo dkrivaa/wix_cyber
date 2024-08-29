@@ -7,7 +7,7 @@ vars_dict = json.loads(json_vars)  # Decode JSON string into a dictionary
 print(vars_dict)
 
 scenario_name = vars_dict.get('scenarioName')
-insurance_price = vars_dict.get('insurancePrice')
+insurance_price = int(vars_dict.get('insurancePrice'))
 risk_assessment_price = vars_dict.get('riskAssessmentPrice')
 soc_price = vars_dict.get('socPrice')
 consult_security_products_hours = vars_dict.get('consultSecurityProductsHours')
