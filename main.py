@@ -1,4 +1,5 @@
 import pandas as pd
+from io import BytesIO
 
 from scenarioData import get_data
 
@@ -7,6 +8,7 @@ print(data_dict)
 
 df = pd.DataFrame([data_dict])
 
+df.to_excel('text.xlsx', index=False)
 
 
 
