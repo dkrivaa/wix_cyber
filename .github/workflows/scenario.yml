@@ -25,7 +25,14 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run script
-        run: python main.py
+        id: run_script
+        run: |
+          result=$(python main.py)
+          echo "RESULT=$result" >> $GITHUB_ENV
+          echo "RESULT=$result" >> $GITHUB_OUTPUT
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
+
+      - name: Output result
+        run: echo "The result is ${{ steps.run_script.outputs.RESULT }}"
 
