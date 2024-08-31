@@ -7,7 +7,7 @@ from scenarioData import get_data
 def test():
     data_dict = get_data()
     print(data_dict)
-    return data_dict
+    return 'this works'
 
 # df = pd.DataFrame([data_dict])
 #
