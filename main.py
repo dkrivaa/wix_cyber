@@ -9,6 +9,7 @@ def test():
     data_dict = get_data()
     df = pd.DataFrame([data_dict])
     df.to_excel('myfile.xlsx', index=False)
+    print(data_dict)
 
 
 if __name__ == '__main__':
