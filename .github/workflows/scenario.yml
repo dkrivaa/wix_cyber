@@ -1,6 +1,6 @@
 name: run_model
 on:
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
 
       json_vars:
