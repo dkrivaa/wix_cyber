@@ -28,11 +28,12 @@ jobs:
         id: run_script
         run: |
           result=$(python main.py)
-          echo "RESULT=$result" >> $GITHUB_ENV
-          echo "RESULT=$result" >> $GITHUB_OUTPUT
+          echo "RESULT=$(echo '$result' | jq -R -s -c '.')" >> $GITHUB_OUTPUT
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
       - name: Output result
-        run: echo "The result is ${{ steps.run_script.outputs.RESULT }}"
-
+        run: |
+          echo "The result is ${{ steps.run_script.outputs.RESULT }}"
+          echo "Raw output:"
+          echo "${{ toJson(steps.run_script.outputs) }}"
