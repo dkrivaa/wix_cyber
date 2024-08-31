@@ -38,11 +38,5 @@ jobs:
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
-      - name: Set output
-        id: set_output
-        run: echo "::set-output name=result::$result"
-
-      - name: Upload result
-        uses: actions/upload-artifact@v3
-        with:
-          name: script-result
+      - name: Output result
+        run: echo "The result is ${{ steps.run_script.outputs.result }}"
