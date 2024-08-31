@@ -42,6 +42,6 @@ jobs:
         run: echo "::set-output name=result::$result"
 
       - name: Upload result
-        uses: action/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: script-result
