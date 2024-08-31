@@ -24,7 +24,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+#      - name: Run script
+#        run: python main.py
+#        env:
+#          JSON_VARS: ${{ github.event.inputs.json_vars }}
+
       - name: Run script
-        run: python main.py
+        id: run_script
+        run: |
+          result = $(python main.py)
+          echo "result=$result" >> $GITHUB_ENV
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
+
+      - name: Set output
+        id: set_output
+        run: echo "::set-output name=result::$result"
+
+      - name: Upload result
+        uses: action/upload-artifact@v3
