@@ -11,8 +11,7 @@ def test():
 
 
 if __name__ == '__main__':
-    result = test()
-    print(result)
+    test()
 
 
 
