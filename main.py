@@ -7,7 +7,7 @@ from scenarioData import get_data
 def test():
     data_dict = get_data()
     # print(data_dict)
-    return 'this works'
+    print('this works')
 
 
 if __name__ == '__main__':
