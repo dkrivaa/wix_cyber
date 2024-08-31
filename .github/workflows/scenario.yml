@@ -24,11 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "dannykrivaa@gmail.com"
-          git config --global user.name "dkrivaa"
-
       - name: Run script
         run: python main.py
         env:
