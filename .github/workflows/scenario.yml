@@ -43,3 +43,5 @@ jobs:
 
       - name: Upload result
         uses: action/upload-artifact@v3
+        with:
+          name: script-result
