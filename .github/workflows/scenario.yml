@@ -40,4 +40,4 @@ jobs:
 
       - name: Output result
 #        run: echo "The result is ${{ steps.run_script.outputs.result }}"
-        run: echo "The result is ${{ env.result }}"
+        run: echo "The result is ${{ steps.run_script.env.result }}"
