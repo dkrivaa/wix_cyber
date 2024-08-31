@@ -24,20 +24,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-#      - name: Run script
-#        run: python main.py
-#        env:
-#          JSON_VARS: ${{ github.event.inputs.json_vars }}
-
       - name: Run script
-        id: run_script
-        run: |
-          result=$(python main.py)
-          echo "result=$result" >> $GITHUB_ENV
-          echo "result=$result" >> $GITHUB_OUTPUT
+        run: python main.py
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
-      - name: Output result
-#        run: echo "The result is ${{ steps.run_script.outputs.result }}"
-        run: echo "The result is ${{ env.result }}"
