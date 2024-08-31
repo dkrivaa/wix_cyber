@@ -9,13 +9,12 @@ def test():
     print(data_dict)
     return 'this works'
 
-# df = pd.DataFrame([data_dict])
-#
-# df.to_excel('test.xlsx', index=False)
-
 
 if __name__ == '__main__':
     test()
 
 
 
+# df = pd.DataFrame([data_dict])
+#
+# df.to_excel('test.xlsx', index=False)
