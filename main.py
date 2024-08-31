@@ -16,6 +16,3 @@ if __name__ == '__main__':
 
 
 
-# df = pd.DataFrame([data_dict])
-#
-# df.to_excel('test.xlsx', index=False)
