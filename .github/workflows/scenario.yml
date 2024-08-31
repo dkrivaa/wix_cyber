@@ -32,8 +32,9 @@ jobs:
       - name: Run script
         id: run_script
         run: |
-          result = $(python main.py)
+          result=$(python main.py)
           echo "result=$result" >> $GITHUB_ENV
+          echo "::set-output name=result::$result"
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
