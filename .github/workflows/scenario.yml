@@ -39,4 +39,4 @@ jobs:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
       - name: Output result
-        run: echo "${{ steps.run_script.outputs.result }}"
+        run: echo "The result is ${{ steps.run_script.outputs.result }}"
