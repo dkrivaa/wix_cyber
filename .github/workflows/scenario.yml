@@ -34,7 +34,7 @@ jobs:
         run: |
           result=$(python main.py)
           echo "result=$result" >> $GITHUB_ENV
-          echo "::set-output name=result::$result"
+          echo "result=$result" >> $GITHUB_OUTPUT
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
