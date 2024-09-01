@@ -9,7 +9,7 @@ from scenarioData import get_data
 
 def test():
     data_dict = get_data()
-    print(json.dumps(data_dict))
+    print(data_dict.insurancePrice)
 
 
 if __name__ == '__main__':
