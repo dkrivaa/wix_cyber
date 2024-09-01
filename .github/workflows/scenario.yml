@@ -33,4 +33,4 @@ jobs:
       - name: Set output
         id: set_output
         run: |
-          echo "result=${{ env.RESULT }}" >> $GITHUB_OUTPUT
+          echo "result=${{ env.RESULT }}" >> $GITHUB_ENV
