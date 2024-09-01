@@ -27,13 +27,10 @@ jobs:
       - name: Run script
         id: run_script
         run: |
-          result=$(python main.py)
-          echo "RESULT=$(echo '$result' | jq -R -s -c '.')" >> $GITHUB_OUTPUT
+          python main.py
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
 
-      - name: Output result
-        run: |
-          echo "The result is ${{ steps.run_script.outputs.RESULT }}"
-          echo "Raw output:"
-          echo "${{ toJson(steps.run_script.outputs) }}"
+      - name: Set output
+        id: set_output
+        run: echo "RESULT=$(python main.py)" >> $GITHUB_ENV
