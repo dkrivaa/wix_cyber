@@ -9,7 +9,7 @@ from scenarioData import get_data
 
 def test():
     data_dict = get_data()
-    print(data_dict['insurancePrice'])
+    print(data_dict['insurancePrice'] + data_dict['riskAssessmentPrice'])
 
 
 if __name__ == '__main__':
