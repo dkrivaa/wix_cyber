@@ -3,6 +3,8 @@ import os
 import subprocess
 import pandas as pd
 from io import BytesIO
+import requests
+
 
 from scenarioData import get_data
 
@@ -21,6 +23,21 @@ def test():
 
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
+
+    # URL of the file to download
+    url = 'https://raw.githubusercontent.com/dkrivaa/wix_cyber/main/test.xlsx'
+
+    # Send a GET request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Save the content to a local file
+        with open('download_file.xlsx', 'wb') as file:
+            file.write(response.content)
+        print("File downloaded successfully!")
+    else:
+        print(f"Failed to download file. Status code: {response.status_code}")
 
 
 if __name__ == '__main__':
