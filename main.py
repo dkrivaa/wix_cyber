@@ -11,7 +11,7 @@ from scenarioData import get_data
 def test():
     data_dict = get_data()
     github_token = os.getenv('secrets.ACCESS_TOKEN')
-    print(github_token[0:5])
+    print(github_token)
     print(json.dumps(data_dict))
 
 
