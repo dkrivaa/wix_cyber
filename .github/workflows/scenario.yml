@@ -2,11 +2,9 @@ name: run_model
 on:
   workflow_dispatch:
     inputs:
-
       json_vars:
         description: 'JSON-encoded string of scenario variables'
         required: true
-
 
 jobs:
   run-script:
