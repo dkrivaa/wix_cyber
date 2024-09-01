@@ -31,7 +31,6 @@ jobs:
           echo "RESULT=$result" >> $GITHUB_ENV
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Set output
         id: set_output
