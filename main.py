@@ -3,7 +3,6 @@ import os
 
 import pandas as pd
 from io import BytesIO
-import subprocess
 
 from scenarioData import get_data
 
