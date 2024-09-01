@@ -24,15 +24,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+      - name: Set up Git to use ACCESS_TOKEN
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${ACCESS_TOKEN}@github.com/${{ github.repository }}.git
+
       - name: Run script
         id: run_script
         run: |
-          result=$(python main.py)
-          echo "RESULT=$result" >> $GITHUB_ENV
+          python main.py
         env:
           JSON_VARS: ${{ github.event.inputs.json_vars }}
+        
 
-      - name: Set output
-        id: set_output
-        run: |
-          echo "result=${{ env.RESULT }}" >> $GITHUB_OUTPUT
