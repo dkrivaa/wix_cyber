@@ -24,22 +24,6 @@ def test():
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
 
-    # URL of the file to download
-    url = 'https://raw.githubusercontent.com/dkrivaa/wix_cyber/main/test.xlsx'
-
-    # Send a GET request to the URL
-    response = requests.get(url)
-
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Save the content to a local file
-        file_path = os.path.join(os.getcwd(), 'test.xlsx')
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
-        print(f"File downloaded and saved as '{file_path}'.")
-    else:
-        print(f"Failed to download file. Status code: {response.status_code}")
-
 
 if __name__ == '__main__':
     test()
