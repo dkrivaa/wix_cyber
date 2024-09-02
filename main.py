@@ -33,7 +33,7 @@ def test():
     # Check if the request was successful
     if response.status_code == 200:
         # Save the content to a local file
-        file_path = os.path.join(os.getcwd(), 'yourfile.txt')
+        file_path = os.path.join(os.getcwd(), 'test.xlsx')
         with open(file_path, 'wb') as file:
             file.write(response.content)
         print(f"File downloaded and saved as '{file_path}'.")
