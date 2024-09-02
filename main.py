@@ -4,6 +4,7 @@ import subprocess
 import pandas as pd
 from io import BytesIO
 import requests
+import time
 
 
 from scenarioData import get_data
@@ -23,6 +24,8 @@ def test():
 
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
+
+    time.sleep(30)
 
 
 if __name__ == '__main__':
