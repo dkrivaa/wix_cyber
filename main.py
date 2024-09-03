@@ -12,6 +12,9 @@ from scenarioData import get_data
 
 def test():
     data_dict = get_data()
+
+    # This is where to run simulation function
+
     df = pd.DataFrame([data_dict])
     df.to_excel('test.xlsx', index=False)
 
