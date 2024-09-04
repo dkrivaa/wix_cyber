@@ -8,12 +8,13 @@ import time
 
 
 from scenarioData import get_data
+from simulation import run_simulation
 
 
 def test():
     data_dict = get_data()
 
-    # This is where to run simulation function
+    run_simulation(data_dict)
 
     df = pd.DataFrame([data_dict])
     df.to_excel('test.xlsx', index=False)
