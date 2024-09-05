@@ -14,7 +14,8 @@ from simulation import run_simulation
 def test():
     data_dict = get_data()
 
-    run_simulation(data_dict)
+    results = run_simulation(data_dict)
+    print(results)
 
     df = pd.DataFrame([data_dict])
     df.to_excel('test.xlsx', index=False)
