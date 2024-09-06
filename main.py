@@ -15,7 +15,6 @@ def test():
     data_dict = get_data()
 
     results = run_simulation(data_dict)
-    print(results)
 
     df = pd.DataFrame(results, columns=[
         'month', 'customers', 'new customers', 'referred customers', 'lead customers',
