@@ -426,9 +426,7 @@ def run_simulation(data_dict):
         while True:
             yield env.timeout(1)
             period = math.floor(env.now)
-            print(period, business.tele_resource.capacity,
-                  business.sales_resource.capacity, business.cyber_resource.capacity, business.tele_staff,
-                  business.sales_staff, business.cyber_staff, business.logistics_staff)
+
             customers_served = business.customers_served - prev_customers
             new_customer_served = business.new_customer - prev_new_customer
             referred_customer_served = business.referred_customer - prev_referred_customer
