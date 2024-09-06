@@ -17,7 +17,20 @@ def test():
     results = run_simulation(data_dict)
     print(results)
 
-    df = pd.DataFrame([data_dict])
+    df = pd.DataFrame(results, columns=[
+        'month', 'customers', 'new customers', 'referred customers', 'lead customers',
+        'existing customers', 'Risk assessment pakages sold', 'Risk assessment pakages sold to new customers',
+        'Risk assessment pakages sold to referred customers', 'Risk assessment pakages sold to lead customers',
+        'Risk assessment pakages sold to existing customers', 'SOC pakages sold',
+        'SOC pakages sold to new customers', 'SOC pakages sold to referred customers',
+        'SOC pakages sold to lead customers', 'SOC pakages sold to existing customers', 'Insurance packages sold',
+        'Insurance packages sold to new customers', 'Insurance packages sold to referred customers',
+        'Insurance packages sold to lead customers', 'Insurance packages sold to existing customers',
+        'Income from risk assessment packages', 'Income from SOC packages', 'Income from insurance packages',
+        'Total income', 'Admin staff', 'Tele staff', 'Sales staff', 'Cyber staff', 'Logistics staff',
+        'Labor cost', 'Risk assessment packages cost', 'SOC packages cost', 'Marketing cost',
+        'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit',
+    ])
     df.to_excel('test.xlsx', index=False)
 
     # Add the Excel file to the Git staging area
