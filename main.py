@@ -31,7 +31,8 @@ def test():
         'Total staff', 'Labor cost', 'Risk assessment packages cost', 'SOC packages cost', 'Marketing cost',
         'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit',
     ])
-    df.to_excel('test.xlsx', index=False)
+
+    df.T.to_excel('test.xlsx', index=False)
 
     # Add the Excel file to the Git staging area
     subprocess.run(['git', 'add', 'test.xlsx'], check=True)
