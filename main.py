@@ -45,7 +45,7 @@ def test():
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
 
-    time.sleep(30)
+    # time.sleep(30)
 
 
 if __name__ == '__main__':
