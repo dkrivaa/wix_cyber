@@ -34,7 +34,7 @@ def test():
 
     df = df.T
     df = df.reset_index()
-    df.to_excel('test.xlsx', index=False)
+    df.to_excel('test.xlsx', index=False, header=False)
 
     # Add the Excel file to the Git staging area
     subprocess.run(['git', 'add', 'test.xlsx'], check=True)
