@@ -28,7 +28,7 @@ def test():
         'Insurance packages sold to lead customers', 'Insurance packages sold to existing customers',
         'Income from risk assessment packages', 'Income from SOC packages', 'Income from insurance packages',
         'Total income', 'Admin staff', 'Tele staff', 'Sales staff', 'Cyber staff', 'Logistics staff',
-        'Labor cost', 'Risk assessment packages cost', 'SOC packages cost', 'Marketing cost',
+        'Total staff', 'Labor cost', 'Risk assessment packages cost', 'SOC packages cost', 'Marketing cost',
         'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit',
     ])
     df.to_excel('test.xlsx', index=False)
