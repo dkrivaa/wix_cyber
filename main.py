@@ -1,15 +1,36 @@
-import json
 import os
 import subprocess
 import pandas as pd
-from io import BytesIO
-import requests
-import time
 
+from openpyxl import load_workbook
+from openpyxl.styles import Font, PatternFill, Alignment
 
 from scenarioData import get_data
 from simulation import run_simulation
 
+
+def format_excel_file(file_path):
+    # Load the workbook and select the active sheet
+    wb = load_workbook(file_path)
+    ws = wb.active
+
+    # Apply styles to the header (first row)
+    header_font = Font(bold=True, color="FFFFFF")
+    header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
+    header_alignment = Alignment(horizontal="center", vertical="center")
+
+    for cell in ws[1]:
+        cell.font = header_font
+        cell.fill = header_fill
+        cell.alignment = header_alignment
+
+    # Set column widths for better readability
+    column_widths = [20, 15, 18, 18, 20, 20, 25, 25, 25, 25, 20, 20, 25, 25, 25, 25, 20, 25, 25, 25, 25, 25, 25, 20]
+    for i, column_width in enumerate(column_widths, 1):
+        ws.column_dimensions[chr(64 + i)].width = column_width
+
+    # Save the formatted Excel file
+    wb.save(file_path)
 
 def test():
     # Check if 'test.xlsx' exists in the repository and delete
@@ -51,6 +72,7 @@ def test():
     df.to_excel('test.xlsx', index=False, header=False)
 
     # Format Excl file
+    format_excel_file('test.xlsx')
 
     # Save new excel file with simulation results
     # Add the Excel file to the Git staging area
