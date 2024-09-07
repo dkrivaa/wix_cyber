@@ -451,6 +451,8 @@ def run_simulation(data_dict):
             package3_lead = business.package3_lead - prev_package3_lead
             package3_existing = business.package3_existing - prev_package3_existing
 
+            all_packages_sold = package1 + package2 + package3
+
             income1 = business.income1 - prev_income1
             income2 = business.income2 - prev_income2
             income3 = business.income3 - prev_income3
@@ -484,8 +486,8 @@ def run_simulation(data_dict):
                             lead_customer_served, existing_customer_served, package1, package1_new,
                             package1_referred, package1_lead, package1_existing, package2, package2_new,
                             package2_referred, package2_lead, package2_existing, package3, package3_new,
-                            package3_referred, package3_lead, package3_existing, income1, income2,
-                            income3, total_income,
+                            package3_referred, package3_lead, package3_existing, all_packages_sold,
+                            income1, income2, income3, total_income,
                             business.admin_staff, business.tele_staff, business.sales_staff,
                             business.cyber_staff, business.logistics_staff, total_staff, labor_cost,
                             product_cost1, product_cost2, marketing_cost, overhead_cost, legal_account_cost,
