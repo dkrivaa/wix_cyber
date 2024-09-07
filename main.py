@@ -26,6 +26,7 @@ def test():
         subprocess.run(['git', 'push'], check=True)
 
     data_dict = get_data()
+    print(data_dict['scenarioName'])
 
     results = run_simulation(data_dict)
 
