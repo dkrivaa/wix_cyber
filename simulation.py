@@ -239,10 +239,9 @@ def run_simulation(data_dict):
                     return False
 
         buy = buying_chance(customer)
+        customer.package = 0
         if buy > 0:
             customer.package = buy
-        else:
-            customer.package = 0
         tele_meet = yield env.process(tele_process(env, business, customer))
         if tele_meet:
             business.meetings_bonus += 50
