@@ -17,17 +17,24 @@ def format_excel_file(file_path):
     # Apply styles to the header (first row)
     header_font = Font(bold=True, color="FFFFFF")
     header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
-    header_alignment = Alignment(horizontal="center", vertical="center")
+    header_alignment = Alignment(horizontal="right", vertical="center")
 
-    for cell in ws[2]:
+    for cell in ws[1]:
         cell.font = header_font
         cell.fill = header_fill
         cell.alignment = header_alignment
 
-    # Set column widths for better readability
-    column_widths = [20, 15, 18, 18, 20, 20, 25, 25, 25, 25, 20, 20, 25, 25, 25, 25, 20, 25, 25, 25, 25, 25, 25, 20]
-    for i, column_width in enumerate(column_widths, 1):
-        ws.column_dimensions[chr(64 + i)].width = column_width
+        # Set the width of the first column to 45
+        ws.column_dimensions['A'].width = 45
+
+        # Set the width of all other columns to 11
+        for col in range(2, ws.max_column + 1):
+            col_letter = chr(64 + col)  # Convert number to column letter (B, C, D, etc.)
+            ws.column_dimensions[col_letter].width = 11
+
+            # Apply the number format #,### to all columns except the first
+            for cell in ws[col_letter]:
+                cell.number_format = '#,###'
 
     # Save the formatted Excel file
     wb.save(file_path)
