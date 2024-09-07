@@ -12,7 +12,7 @@ from simulation import run_simulation
 
 
 def test():
-    # Check if 'test.xlsx' exists in the repository
+    # Check if 'test.xlsx' exists in the repository and delete
     if os.path.exists('test.xlsx'):
         # Remove the file from the Git repository and stage the change
         subprocess.run(['git', 'rm', 'test.xlsx'], check=True)
@@ -25,6 +25,7 @@ def test():
         # Push the deletion to the remote repository
         subprocess.run(['git', 'push'], check=True)
 
+    # Get simulation data and run simulation
     data_dict = get_data()
     print(data_dict['scenarioName'])
 
@@ -49,6 +50,9 @@ def test():
     df = df.reset_index()
     df.to_excel('test.xlsx', index=False, header=False)
 
+    # Format Excl file
+
+    # Save new excel file with simulation results
     # Add the Excel file to the Git staging area
     subprocess.run(['git', 'add', 'test.xlsx'], check=True)
 
