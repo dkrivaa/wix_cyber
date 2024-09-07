@@ -160,12 +160,13 @@ def run_simulation(data_dict):
             while True:
                 yield env.timeout(12)
                 print(math.floor(customer.buy_time), math.floor(env.now))
-                if math.floor(customer.buy_time) + 13 >= math.floor(env.now):
+                if math.floor(customer.buy_time) + 13 > math.floor(env.now):
                     customer.customer_type = 'existing'
                     customer.customer_risk = data_dict['existingRisk'] / 100
                     customer.customer_priority = 1
                     customer.customer_commission = data_dict['existingCommission'] / 100
-                    # customer.package = 0
+                else:
+                    customer.package = 0
 
                     env.process(serve_customer(env, business, customer))
 
