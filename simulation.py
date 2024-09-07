@@ -159,7 +159,7 @@ def run_simulation(data_dict):
         if customer.package != 0:
             while True:
                 yield env.timeout(12)
-                if math.floor(customer.buy_time) + 12 > math.floor(env.now):
+                if math.floor(customer.buy_time) + 12 >= math.floor(env.now):
                     customer.customer_type = 'existing'
                     customer.customer_risk = data_dict['existingRisk'] / 100
                     customer.customer_priority = 1
