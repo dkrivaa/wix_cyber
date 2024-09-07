@@ -4,6 +4,7 @@ import pandas as pd
 
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
+from openpyxl.utils import get_column_letter
 
 from scenarioData import get_data
 from simulation import run_simulation
@@ -27,9 +28,11 @@ def format_excel_file(file_path):
         # Set the width of the first column to 45
         ws.column_dimensions['A'].width = 45
 
-        # Set the width of all other columns to 11
+        # Set the width of all other columns to 11 and apply number format #,###
         for col in range(2, ws.max_column + 1):
-            col_letter = chr(64 + col)  # Convert number to column letter (B, C, D, etc.)
+            col_letter = get_column_letter(col)  # Convert column number to column letter
+
+            # Set the width of the column
             ws.column_dimensions[col_letter].width = 11
 
             # Apply the number format #,### to all cells in this column (starting from row 2)
