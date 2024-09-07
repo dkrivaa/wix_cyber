@@ -12,6 +12,19 @@ from simulation import run_simulation
 
 
 def test():
+    # Check if 'test.xlsx' exists in the repository
+    if os.path.exists('test.xlsx'):
+        # Remove the file from the Git repository and stage the change
+        subprocess.run(['git', 'rm', 'test.xlsx'], check=True)
+        print('Deleted test.xlsx from the repository')
+
+        # Commit the deletion
+        commit_message = 'Remove existing test.xlsx before generating a new one'
+        subprocess.run(['git', 'commit', '-m', commit_message], check=True)
+
+        # Push the deletion to the remote repository
+        subprocess.run(['git', 'push'], check=True)
+
     data_dict = get_data()
 
     results = run_simulation(data_dict)
