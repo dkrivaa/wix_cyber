@@ -33,8 +33,8 @@ def format_excel_file(file_path):
             ws.column_dimensions[col_letter].width = 11
 
             # Apply the number format #,### to all columns except the first
-            for cell in ws[col_letter]:
-                cell.number_format = '#,###'
+            for number_cell in ws[col_letter]:
+                number_cell.number_format = '#,###'
 
     # Save the formatted Excel file
     wb.save(file_path)
