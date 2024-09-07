@@ -159,7 +159,7 @@ def run_simulation(data_dict):
         if customer.package != 0:
             while True:
                 yield env.timeout(12)
-                print(math.floor(customer.buy_time), math.floor(env.now))
+                print(customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
                 if math.floor(customer.buy_time) + 13 > math.floor(env.now):
                     print('inside',customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
                     customer.customer_type = 'existing'
