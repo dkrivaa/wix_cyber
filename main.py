@@ -32,9 +32,10 @@ def format_excel_file(file_path):
             col_letter = chr(64 + col)  # Convert number to column letter (B, C, D, etc.)
             ws.column_dimensions[col_letter].width = 11
 
-            # Apply the number format #,### to all columns except the first
-            for number_cell in ws[col_letter]:
-                number_cell.number_format = '#,###'
+            # Apply the number format #,### to all cells in this column (starting from row 2)
+            for row in range(2, ws.max_row + 1):
+                cell = ws[f"{col_letter}{row}"]  # Access the specific cell
+                cell.number_format = '#,###'
 
     # Save the formatted Excel file
     wb.save(file_path)
