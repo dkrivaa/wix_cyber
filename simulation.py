@@ -257,9 +257,11 @@ def run_simulation(data_dict):
                         sales_meet = yield env.process(sales_process(env, business, customer))
                         if not sales_meet:
                             business.no_sales += 1
+                            customer.package = 0
                             return
                     else:
                         business.no_tele += 1
+                        customer.package = 0
                         return
                 cyber_meet = yield env.process(cyber_process(env, business, customer))
                 if cyber_meet:
@@ -267,10 +269,13 @@ def run_simulation(data_dict):
                     env.process(buy_process(env, business, customer))
                 else:
                     business.no_cyber += 1
+                    customer.package = 0
             else:
                 business.no_sales += 1
+                customer.package = 0
         else:
             business.no_tele += 1
+            customer.package = 0
 
         yield env.timeout(0)
 
