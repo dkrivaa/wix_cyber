@@ -19,7 +19,7 @@ def format_excel_file(file_path):
     header_fill = PatternFill(start_color="4F81BD", end_color="4F81BD", fill_type="solid")
     header_alignment = Alignment(horizontal="center", vertical="center")
 
-    for cell in ws[1]:
+    for cell in ws[2]:
         cell.font = header_font
         cell.fill = header_fill
         cell.alignment = header_alignment
