@@ -165,10 +165,11 @@ def run_simulation(data_dict):
                     customer.customer_risk = data_dict['existingRisk'] / 100
                     customer.customer_priority = 1
                     customer.customer_commission = data_dict['existingCommission'] / 100
+                    env.process(serve_customer(env, business, customer))
                 else:
                     customer.package = 0
 
-                    env.process(serve_customer(env, business, customer))
+
 
     def serve_customer(env, business, customer):
         business.customers_served += 1
