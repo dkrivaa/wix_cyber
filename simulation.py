@@ -169,6 +169,7 @@ def run_simulation(data_dict):
                     env.process(serve_customer(env, business, customer))
                 else:
                     customer.package = 0
+                    break
 
 
 
