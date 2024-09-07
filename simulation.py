@@ -107,6 +107,7 @@ def run_simulation(data_dict):
             self.customer_size = max(5, int(random.random() * 100))
             # Package bought by customer
             self.package = 0
+            self.buy_time = 0
 
     def customer_generation(env, business):
         customer_num = 0
@@ -155,14 +156,14 @@ def run_simulation(data_dict):
             yield env.timeout(1 / customers)
 
     def renewal(env, business, customer):
-        if customer.package != 0:
+        if customer.package != 0 and customer.buy_time + 12 == math.floor(env.now):
             while True:
                 yield env.timeout(12)
                 customer.customer_type = 'existing'
                 customer.customer_risk = data_dict['existingRisk'] / 100
                 customer.customer_priority = 1
                 customer.customer_commission = data_dict['existingCommission'] / 100
-                customer.package = 0
+                # customer.package = 0
 
                 env.process(serve_customer(env, business, customer))
 
@@ -256,11 +257,9 @@ def run_simulation(data_dict):
                         sales_meet = yield env.process(sales_process(env, business, customer))
                         if not sales_meet:
                             business.no_sales += 1
-                            customer.package = 0
                             return
                     else:
                         business.no_tele += 1
-                        customer.package = 0
                         return
                 cyber_meet = yield env.process(cyber_process(env, business, customer))
                 if cyber_meet:
@@ -268,36 +267,35 @@ def run_simulation(data_dict):
                     env.process(buy_process(env, business, customer))
                 else:
                     business.no_cyber += 1
-                    customer.package = 0
             else:
                 business.no_sales += 1
-                customer.package = 0
         else:
             business.no_tele += 1
-            customer.package = 0
 
         yield env.timeout(0)
 
     # Buying process
     def buy_process(env, business, customer):
+        customer.buy_time = math.floor(env.now)
+
         # Risk assessment
         def package1(env, business, customer):
             business.income1 += data_dict['riskAssessmentPrice'] * 12
             business.product_cost1 += (data_dict['riskAssessmentInitialCost'] * dollar +
-                                      data_dict['riskAssessmentMonthlyCost'] * dollar * 12)
+                                       data_dict['riskAssessmentMonthlyCost'] * dollar * 12)
 
         # Soc and consulting
         def package2(env, business, customer):
             business.income2 += data_dict['socPrice'] * dollar * customer.customer_size * 12
             business.income2 += (data_dict['consultSecurityProductsHours'] *
-                                data_dict['consultSecurityProductsPrice'])
+                                 data_dict['consultSecurityProductsPrice'])
             business.income2 += (data_dict['workerEducationHours'] *
-                                data_dict['workerEducationPrice'])
+                                 data_dict['workerEducationPrice'])
             business.product_cost2 += data_dict['socCost'] * dollar * customer.customer_size * 12
             business.product_cost2 += (data_dict['consultSecurityProductsHours'] *
-                                      data_dict['consultSecurityProductsCost'])
+                                       data_dict['consultSecurityProductsCost'])
             business.product_cost2 += (data_dict['workerEducationHours'] *
-                                      data_dict['workerEducationCost'])
+                                       data_dict['workerEducationCost'])
 
         # Insurance
         def package3(env, business, customer):
