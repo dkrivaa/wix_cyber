@@ -58,11 +58,11 @@ def format_excel_file(file_path):
 
     last_row = ws.max_row + 1
     ws[f'A{last_row}'] = 'Accumulated Gross Profit'
-    ws[f'B{last_row}'] = ws[f'B{last_row - 1}']
+    ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
     for col in range(3, ws.max_column + 1):
         col_letter = get_column_letter(col)
         prev_letter = get_column_letter(col - 1)
-        ws[f'{col_letter}{last_row}'] = ws[f'{col_letter}{last_row-1}'] - ws[f'{prev_letter}{last_row-1}']
+        ws[f'{col_letter}{last_row}'] = f'{prev_letter}{last_row} + {col_letter}{last_row-1}'
 
     # Save the formatted Excel file
     wb.save(file_path)
