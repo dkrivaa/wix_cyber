@@ -117,6 +117,8 @@ def test():
     df = df.reset_index()
     df.to_excel('test.xlsx', index=False, header=False)
 
+    # Format Excl file
+    format_excel_file('test.xlsx')
 
     # Save new Excel file with simulation results
     # Add the Excel file to the Git staging area
@@ -129,8 +131,7 @@ def test():
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
 
-    # Format Excl file
-    format_excel_file('test.xlsx')
+
 
     # time.sleep(30)
 
