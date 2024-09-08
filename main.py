@@ -76,7 +76,8 @@ def format_excel_file(file_path):
 
 
     # Save the formatted Excel file
-    wb.save(file_path)
+    # wb.save(file_path)
+    return file_path
 
 def test():
     # Check if 'test.xlsx' exists in the repository and delete
