@@ -64,10 +64,10 @@ def format_excel_file(file_path):
         col_letter = get_column_letter(col)
         prev_letter = get_column_letter(col - 1)
         ws[f'{col_letter}{last_row}'] = ws[f'{prev_letter}{last_row}'].value + ws[f'{col_letter}{last_row-1}'].value
-        ws[f'{col_letter}{last_row}'].number_format = '#,###'
-        ws[f'{col_letter}{last_row}'].font = header_font
-        ws[f'{col_letter}{last_row}'].font = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
-    ws[f'B{last_row}'].number_format = '#,###'
+        ws[f'{col_letter}{last_row-1}'].number_format = '#,###'
+        ws[f'{col_letter}{last_row-1}'].font = header_font
+        ws[f'{col_letter}{last_row-1}'].font = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
+    ws[f'B{last_row-1}'].number_format = '#,###'
 
     # Save the formatted Excel file
     wb.save(file_path)
