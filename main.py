@@ -117,7 +117,7 @@ def test():
     df = df.reset_index()
     df.to_excel('test.xlsx', index=False, header=False)
 
-    # Format Excl file
+    # Format Excel file
     format_excel_file('test.xlsx')
 
     # Save new Excel file with simulation results
