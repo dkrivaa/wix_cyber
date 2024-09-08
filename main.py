@@ -25,22 +25,22 @@ def format_excel_file(file_path):
         cell.fill = header_fill
         cell.alignment = header_alignment
 
-        # Set the width of the first column to 45
-        ws.column_dimensions['A'].width = 45
+    # Set the width of the first column to 45
+    ws.column_dimensions['A'].width = 45
 
-        ws['A1'].alignment = Alignment(horizontal="left", vertical="center")
+    ws['A1'].alignment = Alignment(horizontal="left", vertical="center")
 
-        # Set the width of all other columns to 11 and apply number format #,###
-        for col in range(2, ws.max_column + 1):
-            col_letter = get_column_letter(col)  # Convert column number to column letter
+    # Set the width of all other columns to 11 and apply number format #,###
+    for col in range(2, ws.max_column + 1):
+        col_letter = get_column_letter(col)  # Convert column number to column letter
 
-            # Set the width of the column
-            ws.column_dimensions[col_letter].width = 11
+        # Set the width of the column
+        ws.column_dimensions[col_letter].width = 11
 
-            # Apply the number format #,### to all cells in this column (starting from row 2)
-            for row in range(2, ws.max_row + 1):
-                cell = ws[f"{col_letter}{row}"]  # Access the specific cell
-                cell.number_format = '#,###'
+        # Apply the number format #,### to all cells in this column (starting from row 2)
+        for row in range(2, ws.max_row + 1):
+            cell = ws[f"{col_letter}{row}"]  # Access the specific cell
+            cell.number_format = '#,###'
 
     # Save the formatted Excel file
     wb.save(file_path)
