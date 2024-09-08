@@ -76,8 +76,8 @@ def format_excel_file(file_path):
 
 
     # Save the formatted Excel file
-    # wb.save(file_path)
-    return file_path
+    wb.save(file_path)
+
 
 def test():
     # Check if 'test.xlsx' exists in the repository and delete
@@ -117,8 +117,6 @@ def test():
     df = df.reset_index()
     df.to_excel('test.xlsx', index=False, header=False)
 
-    # Format Excl file
-    format_excel_file('test.xlsx')
 
     # Save new Excel file with simulation results
     # Add the Excel file to the Git staging area
@@ -130,6 +128,9 @@ def test():
 
     # Push the changes back to the repository
     subprocess.run(['git', 'push'], check=True)
+
+    # Format Excl file
+    format_excel_file('test.xlsx')
 
     # time.sleep(30)
 
