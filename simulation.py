@@ -156,11 +156,11 @@ def run_simulation(data_dict):
             # Pause until next customer 'birth'
             yield env.timeout(1 / customers)
 
-    def renewal(env, business, customer):
+    def renewal(env, business, customer, buy_time):
 
         while True:
             yield env.timeout(12)
-            if math.floor(env.now) - math.floor(customer.buy_time) > 13 or customer.package == 0:
+            if math.floor(env.now) - buy_time > 13 or customer.package == 0:
                 break
             else:
                 print(customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
@@ -350,7 +350,8 @@ def run_simulation(data_dict):
             package2(env, business, customer)
             package3(env, business, customer)
 
-        env.process(renewal(env, business, customer))
+        buy_time = math.floor(env.now)
+        env.process(renewal(env, business, customer, buy_time))
 
         yield env.timeout(0)
 
