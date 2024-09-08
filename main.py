@@ -56,14 +56,14 @@ def format_excel_file(file_path):
             cell.font = header_font
             cell.fill = header_fill
 
-    last_row = ws.max_row + 1
-    ws[f'A{last_row}'] = 'Accumulated Gross Profit'
-    ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
-    ws[f'B{last_row}'].number_format = '#,###'
-    for col in range(3, ws.max_column + 1):
-        col_letter = get_column_letter(col)
-        prev_letter = get_column_letter(col - 1)
-        ws[f'{col_letter}{last_row}'] = ws[f'{prev_letter}{last_row}'].value + ws[f'{col_letter}{last_row-1}'].value
+    # last_row = ws.max_row + 1
+    # ws[f'A{last_row}'] = 'Accumulated Gross Profit'
+    # ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
+    # ws[f'B{last_row}'].number_format = '#,###'
+    # for col in range(3, ws.max_column + 1):
+    #     col_letter = get_column_letter(col)
+    #     prev_letter = get_column_letter(col - 1)
+    #     ws[f'{col_letter}{last_row}'] = ws[f'{prev_letter}{last_row}'].value + ws[f'{col_letter}{last_row-1}'].value
         # ws[f'{col_letter}{last_row}'].number_format = '#,###'
         # ws[f'{col_letter}{last_row}'].font = header_font
         # ws[f'{col_letter}{last_row}'].font = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
