@@ -142,7 +142,7 @@ def run_simulation(data_dict):
                 periods = [12, 24, 36, 48]
 
                 if period <= 12:
-                    return customers * (1 + growth[0]) ** period-1
+                    return customers * (1 + growth[0]) ** period
                 else:
                     for idx, per in enumerate(periods):
                         if period > per:
