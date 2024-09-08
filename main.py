@@ -25,6 +25,8 @@ def format_excel_file(file_path):
         cell.fill = header_fill
         cell.alignment = header_alignment
 
+        cell['A1'].alignment = Alignment(horizontal='left')
+
         # Set the width of the first column to 45
         ws.column_dimensions['A'].width = 45
 
