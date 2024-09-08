@@ -59,16 +59,18 @@ def format_excel_file(file_path):
     last_row = ws.max_row + 1
     ws[f'A{last_row}'] = 'Accumulated Gross Profit'
     ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
-    ws[f'B{last_row - 1}'].number_format = '#,###'
+    ws[f'B{last_row}'].number_format = '#,###'
+    ws[f'B{last_row}'].font = header_font
+    ws[f'B{last_row}'].fill = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
 
     for col in range(3, ws.max_column + 1):
         col_letter = get_column_letter(col)
         prev_letter = get_column_letter(col - 1)
         ws[f'{col_letter}{last_row}'] = ws[f'{prev_letter}{last_row}'].value + ws[f'{col_letter}{last_row-1}'].value
 
-        ws[f'{col_letter}{last_row-1}'].number_format = '#,###'
-        ws[f'{col_letter}{last_row-1}'].font = header_font
-        ws[f'{col_letter}{last_row-1}'].fill = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
+        ws[f'{col_letter}{last_row}'].number_format = '#,###'
+        ws[f'{col_letter}{last_row}'].font = header_font
+        ws[f'{col_letter}{last_row}'].fill = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
 
 
     # Save the formatted Excel file
