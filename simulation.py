@@ -161,7 +161,8 @@ def run_simulation(data_dict):
             while True:
                 yield env.timeout(12)
                 print(customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
-                if math.floor(customer.buy_time) + 13 > math.floor(env.now) and customer.renewal is False:
+                if (math.floor(customer.buy_time) + 13 > math.floor(env.now) > math.floor(customer.buy_time) + 11
+                        and not customer.renewal):
                     print('inside',customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
                     customer.customer_type = 'existing'
                     customer.customer_risk = data_dict['existingRisk'] / 100
@@ -248,7 +249,6 @@ def run_simulation(data_dict):
                     return False
 
         buy = buying_chance(customer)
-        customer.package = 0
         if buy > 0:
             customer.package = buy
         tele_meet = yield env.process(tele_process(env, business, customer))
