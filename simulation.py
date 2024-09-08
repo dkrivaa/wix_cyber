@@ -157,22 +157,19 @@ def run_simulation(data_dict):
             yield env.timeout(1 / customers)
 
     def renewal(env, business, customer):
-        if customer.package != 0:
+        if 11 < math.floor(env.now) - math.floor(customer.buy_time) < 13 and customer.package != 0:
+
             while True:
                 yield env.timeout(12)
                 print(customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
-                if (math.floor(customer.buy_time) + 13 > math.floor(env.now) > math.floor(customer.buy_time) + 11
-                        and not customer.renewal):
-                    print('inside',customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
-                    customer.customer_type = 'existing'
-                    customer.customer_risk = data_dict['existingRisk'] / 100
-                    customer.customer_priority = 1
-                    customer.customer_commission = data_dict['existingCommission'] / 100
-                    customer.renewal = True
-                    env.process(serve_customer(env, business, customer))
-                else:
-                    customer.package = 0
-                    break
+                customer.customer_type = 'existing'
+                customer.customer_risk = data_dict['existingRisk'] / 100
+                customer.customer_priority = 1
+                customer.customer_commission = data_dict['existingCommission'] / 100
+                customer.renewal = True
+                env.process(serve_customer(env, business, customer))
+        else:
+            customer.package = 0
 
 
 
