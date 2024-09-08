@@ -49,6 +49,12 @@ def format_excel_file(file_path):
         for cell in ws[row]:
             cell.font = bold_font
 
+    total_rows = [26, 39]
+    for row in total_rows:
+        for cell in ws[row]:
+            cell.font = header_font
+            cell.fill = header_fill
+
     # Save the formatted Excel file
     wb.save(file_path)
 
