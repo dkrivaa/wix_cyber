@@ -157,7 +157,7 @@ def run_simulation(data_dict):
             yield env.timeout(1 / customers)
 
     def renewal(env, business, customer):
-        if 11 < math.floor(env.now) - math.floor(customer.buy_time) < 13 and customer.package != 0:
+        if 11 <= math.floor(env.now) - math.floor(customer.buy_time) <= 13 and customer.package != 0:
 
             while True:
                 yield env.timeout(12)
