@@ -57,6 +57,7 @@ def format_excel_file(file_path):
             cell.fill = header_fill
 
     last_row = ws.max_row + 1
+    print('last_row', last_row)
     ws[f'A{last_row}'] = 'Accumulated Gross Profit'
     ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
     ws[f'B{last_row}'].number_format = '#,###'
