@@ -300,7 +300,6 @@ def run_simulation(data_dict):
 
         # Insurance
         def package3(env, business, customer):
-            # factor = random.gauss(0,1/3)
             price = min(20000, max(5000, int(random.gauss(data_dict['insurancePrice'], 5000) *
                                   (1 + customer.customer_size/100))))
             print(customer.customer_size, price)
