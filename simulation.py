@@ -302,7 +302,6 @@ def run_simulation(data_dict):
         def package3(env, business, customer):
             price = min(20000, max(5000, int(random.gauss(data_dict['insurancePrice'], 5000) *
                                   (1 + customer.customer_size/100))))
-            print(customer.customer_size, price)
             business.income3 += price * customer.customer_commission
             business.sales_bonus += ((price * customer.customer_commission) *
                                      data_dict['salesIncentive'] / 100)
