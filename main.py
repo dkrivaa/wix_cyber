@@ -28,7 +28,7 @@ def format_excel_file(file_path):
         # Set the width of the first column to 45
         ws.column_dimensions['A'].width = 45
 
-        ws['A'].alignment = Alignment(horizontal="left", vertical="center")
+        ws['A1'].alignment = Alignment(horizontal="left", vertical="center")
 
         # Set the width of all other columns to 11 and apply number format #,###
         for col in range(2, ws.max_column + 1):
