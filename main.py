@@ -42,6 +42,7 @@ def format_excel_file(file_path):
             cell = ws[f"{col_letter}{row}"]  # Access the specific cell
             cell.number_format = '#,###'
 
+
     # Make specific rows bold
     bold_rows = [2, 7, 12, 17, 22, 32, ]
     bold_font = Font(bold=True)
@@ -54,6 +55,14 @@ def format_excel_file(file_path):
         for cell in ws[row]:
             cell.font = header_font
             cell.fill = header_fill
+
+    last_row = ws.max_row + 1
+    ws[f'A{last_row}'] = 'Accumulated Gross Profit'
+    ws[f'B{last_row}'] = ws[f'B{last_row - 1}']
+    for col in range(3, ws.max_column + 1):
+        col_letter = get_column_letter(col)
+        prev_letter = get_column_letter(col - 1)
+        ws[f'{col_letter}{last_row}'] = ws[f'{col_letter}{last_row-1}'] - ws[f'{prev_letter}{last_row-1}']
 
     # Save the formatted Excel file
     wb.save(file_path)
