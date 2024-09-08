@@ -57,11 +57,11 @@ def format_excel_file(file_path):
             cell.fill = header_fill
 
     last_row = ws.max_row + 1
-    print('last_row', last_row)
     ws[f'A{last_row}'] = 'Accumulated Gross Profit'
     ws[f'B{last_row}'] = ws[f'B{last_row - 1}'].value
     ws[f'B{last_row}'].number_format = '#,###'
     ws[f'B{last_row}'].font = header_font
+    ws[f'A{last_row}'].fill = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
     ws[f'B{last_row}'].fill = PatternFill(start_color="273f5c", end_color="273f5c", fill_type="solid")
 
     for col in range(3, ws.max_column + 1):
