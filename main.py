@@ -42,6 +42,13 @@ def format_excel_file(file_path):
             cell = ws[f"{col_letter}{row}"]  # Access the specific cell
             cell.number_format = '#,###'
 
+    # Make specific rows bold
+    bold_rows = [2, 7, 12, 17, 22, 32, ]
+    bold_font = Font(bold=True)
+    for row in bold_rows:
+        for cell in ws[row]:
+            cell.font = bold_font
+
     # Save the formatted Excel file
     wb.save(file_path)
 
