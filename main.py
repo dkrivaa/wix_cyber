@@ -83,7 +83,6 @@ def test():
     if os.path.exists('test.xlsx'):
         # Remove the file from the Git repository and stage the change
         subprocess.run(['git', 'rm', 'test.xlsx'], check=True)
-        print('Deleted test.xlsx from the repository')
 
         # Commit the deletion
         commit_message = 'Remove existing test.xlsx before generating a new one'
@@ -120,7 +119,7 @@ def test():
     # Format Excl file
     format_excel_file('test.xlsx')
 
-    # Save new excel file with simulation results
+    # Save new Excel file with simulation results
     # Add the Excel file to the Git staging area
     subprocess.run(['git', 'add', 'test.xlsx'], check=True)
 
