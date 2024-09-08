@@ -62,7 +62,7 @@ def format_excel_file(file_path):
     for col in range(3, ws.max_column + 1):
         col_letter = get_column_letter(col)
         prev_letter = get_column_letter(col - 1)
-        ws[f'{col_letter}{last_row}'] = f'{prev_letter}{last_row} + {col_letter}{last_row-1}'
+        ws[f'{col_letter}{last_row}'] = f'={prev_letter}{last_row} + {col_letter}{last_row-1}'
 
     # Save the formatted Excel file
     wb.save(file_path)
