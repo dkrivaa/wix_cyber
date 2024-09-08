@@ -104,7 +104,7 @@ def run_simulation(data_dict):
                                'existing': data_dict['existingCommission'] / 100}
             self.customer_commission = commission_dict[customer_type]
 
-            self.customer_size = max(5, int(random.random() * 100))
+            self.customer_size = max(5, int(random.random() * 50))
             # Package bought by customer
             self.package = 0
             self.renewal = False
@@ -163,16 +163,12 @@ def run_simulation(data_dict):
             if math.floor(env.now) - buy_time > 13 or customer.package == 0:
                 break
             else:
-                print(customer.customer_id, math.floor(customer.buy_time), math.floor(env.now))
                 customer.customer_type = 'existing'
                 customer.customer_risk = data_dict['existingRisk'] / 100
                 customer.customer_priority = 1
                 customer.customer_commission = data_dict['existingCommission'] / 100
                 customer.renewal = True
                 env.process(serve_customer(env, business, customer))
-
-
-
 
     def serve_customer(env, business, customer):
         business.customers_served += 1
@@ -282,8 +278,6 @@ def run_simulation(data_dict):
 
     # Buying process
     def buy_process(env, business, customer):
-        customer.buy_time = math.floor(env.now)
-        customer.renewal = False
 
         # Risk assessment
         def package1(env, business, customer):
@@ -307,6 +301,9 @@ def run_simulation(data_dict):
         # Insurance
         def package3(env, business, customer):
             # factor = random.gauss(0,1/3)
+            price = max(5000, int(random.gauss(data_dict['insurancePrice'], 5000) *
+                                  (1 + customer.customer_size/100)))
+            print(customer.customer_size, price)
             business.income3 += data_dict['insurancePrice'] * customer.customer_commission
             business.sales_bonus += ((data_dict['insurancePrice'] * customer.customer_commission) *
                                      data_dict['salesIncentive'] / 100)
