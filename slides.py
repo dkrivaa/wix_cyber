@@ -7,6 +7,22 @@ from pptx.enum.chart import XL_TICK_MARK
 from pptx.dml.color import RGBColor
 from pptx.enum.text import MSO_VERTICAL_ANCHOR
 import datetime
+import numpy as np
+
+
+# Extracting annual data from dataframe for slides
+def annual(df):
+    # Adding year column to df
+    df['year'] = np.ceil(df['month'] / 12).astype(int)
+    customers = df.groupby('year')['customers'].sum()
+    risk_packages = df.groupby('year')['Risk assessment pakages sold'].sum()
+    soc_packages = df.groupby('year')['SOC pakages sold'].sum()
+    insurance_packages = df.groupby('year')['Insurance packages sold'].sum()
+    income = df.groupby('year')['Total income'].sum()
+    cost = df.groupby('year')['Total cost'].sum()
+    profit = df.groupby('year')['Gross profit'].sum()
+
+    return customers, risk_packages, soc_packages, insurance_packages, income, cost, profit
 
 
 def make_slides(df, data_dict, file_name):
@@ -35,6 +51,8 @@ def make_slides(df, data_dict, file_name):
     p2.font.color.rgb = RGBColor(16, 53, 117)
     p2.font.bold = True
     p2.alignment = 2
+
+
 
     ### SLIDE 1 ##############################################
     # Scenario assumptions
@@ -100,10 +118,70 @@ def make_slides(df, data_dict, file_name):
     for p in text_frame.paragraphs:
         p.line_spacing = 2
 
+    ### ANNUAL SLIDES ########################################
+
+    # Annual Charts
+    # Making annual data series for slides 4-6
+    customers, risk_packages, soc_packages, insurance_packages, income, cost, profit = annual(df)
+    # Making year list
+    years = []
+    for i in range(len(customers)):
+        year = f'year{i + 1}'
+        years.append(year)
+
     ### SLIDE 2 ##############################################
-    # Charts
 
     slide2 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Gross Profit
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('Gross Profit', profit)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide2.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Gross Profit"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+
+    ### SLIDE 9 ##############################################
+    # Charts
+
+    slide9 = prs.slides.add_slide(prs.slide_layouts[6])
 
     # CHART - CUSTOMERS
 
@@ -122,7 +200,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
-    chart_frame = slide2.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+    chart_frame = slide9.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
     chart = chart_frame.chart
@@ -161,10 +239,10 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
-    ### SLIDE 3 ##############################################
+    ### SLIDE 10 ##############################################
     # Charts
 
-    slide3 = prs.slides.add_slide(prs.slide_layouts[6])
+    slide10 = prs.slides.add_slide(prs.slide_layouts[6])
 
     # CHART - CUSTOMERS buying insurance package
 
@@ -183,7 +261,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
-    chart_frame = slide3.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+    chart_frame = slide10.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
     chart = chart_frame.chart
@@ -222,10 +300,10 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
-    ### SLIDE 4 ##############################################
+    ### SLIDE 11 ##############################################
     # Charts
 
-    slide4 = prs.slides.add_slide(prs.slide_layouts[6])
+    slide11 = prs.slides.add_slide(prs.slide_layouts[6])
 
     # CHART - CUSTOMERS buying insurance package
 
@@ -244,7 +322,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
-    chart_frame = slide4.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+    chart_frame = slide11.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
     chart = chart_frame.chart
@@ -283,10 +361,10 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
-    ### SLIDE 5 ##############################################
+    ### SLIDE 12 ##############################################
     # Charts
 
-    slide5 = prs.slides.add_slide(prs.slide_layouts[6])
+    slide12 = prs.slides.add_slide(prs.slide_layouts[6])
 
     # CHART - CUSTOMERS buying insurance package
 
@@ -305,7 +383,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
-    chart_frame = slide5.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+    chart_frame = slide12.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
     chart = chart_frame.chart
