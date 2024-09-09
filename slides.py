@@ -177,6 +177,298 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
+    ### SLIDE 3 ##############################################
+
+    slide3 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Insurance Packages Sold
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('insurance packages', insurance_packages)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide3.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Insurance Packages Sold"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+    ### SLIDE 4 ##############################################
+
+    slide4 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Risk Assessment Packages Sold
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('Risk packages', risk_packages)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide4.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Risk Assessment Packages Sold"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+
+    ### SLIDE 5 ##############################################
+
+    slide5 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - SOC Packages Sold
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('SOC packages', soc_packages)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide5.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "SOC Packages Sold"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+
+    ### SLIDE 6 ##############################################
+
+    slide6 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Annual Income
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('income', income)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide6.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Annual Income"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+
+    ### SLIDE 7 ##############################################
+
+    slide7 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Annual Expenses
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('cost', cost)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide7.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Annual Expenses"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+
+    ### SLIDE 8 ##############################################
+
+    slide8 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - Annual Customers
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = years
+    chart_data.add_series('customers', customers)
+
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide8.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers"
+    # Add legend
+    chart.has_legend = False
+
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(10)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
 
     ### SLIDE 9 ##############################################
     # Charts
