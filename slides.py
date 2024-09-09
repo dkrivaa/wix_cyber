@@ -121,7 +121,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('lead', lead_customer)
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
-    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9.5), Inches(6)
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
     chart_frame = slide2.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
