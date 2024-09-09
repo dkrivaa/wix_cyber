@@ -80,7 +80,7 @@ def format_excel_file(file_path):
 
 
 def test():
-    # Check if 'test.xlsx' exists in the repository and delete
+    # Check if 'simulation.xlsx' exists in the repository and delete
     if os.path.exists('simulation.xlsx'):
         # Remove the file from the Git repository and stage the change
         subprocess.run(['git', 'rm', 'simulation.xlsx'], check=True)
