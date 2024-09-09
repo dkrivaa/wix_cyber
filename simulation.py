@@ -429,6 +429,8 @@ def run_simulation(data_dict):
         prev_product_cost1 = 0
         prev_product_cost2 = 0
 
+        prev_gross_profit = 0
+
         prev_no_tele = 0
         prev_no_sales = 0
         prev_no_cyber = 0
@@ -486,6 +488,7 @@ def run_simulation(data_dict):
 
             gross_profit = total_income - total_cost
 
+            acc_gross_profit = prev_gross_profit + gross_profit
 
 
             no_tele = business.no_tele - prev_no_tele
@@ -501,7 +504,7 @@ def run_simulation(data_dict):
                             business.admin_staff, business.tele_staff, business.sales_staff,
                             business.cyber_staff, business.logistics_staff, total_staff, labor_cost,
                             product_cost1, product_cost2, marketing_cost, overhead_cost, legal_account_cost,
-                            total_cost, gross_profit, ])
+                            total_cost, gross_profit, acc_gross_profit])
 
             prev_customers = business.customers_served
             prev_new_customer = business.new_customer
@@ -536,6 +539,8 @@ def run_simulation(data_dict):
 
             prev_product_cost1 = business.product_cost1
             prev_product_cost2 = business.product_cost2
+
+            prev_gross_profit = acc_gross_profit
 
             prev_no_tele = business.no_tele
             prev_no_sales = business.no_sales

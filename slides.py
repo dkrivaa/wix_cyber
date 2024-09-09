@@ -469,7 +469,6 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
-
     ### SLIDE 9 ##############################################
     # Charts
 
@@ -478,18 +477,13 @@ def make_slides(df, data_dict, file_name):
     # CHART - CUSTOMERS
 
     # Data for chart 1
-    new_customer = df['new customers']
-    referred_customer = df['referred customers']
-    lead_customer = df['lead customers']
-    existing_customer = df['existing customers']
+    monthly_profit = df['Gross profit']
 
     # define chart and data
     chart_data = CategoryChartData()
     chart_data.categories = list(df['month'])
-    chart_data.add_series('new', new_customer)
-    chart_data.add_series('referred', referred_customer)
-    chart_data.add_series('lead', lead_customer)
-    chart_data.add_series('existing', existing_customer)
+    chart_data.add_series('Gross Profit', monthly_profit)
+
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
     chart_frame = slide9.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
@@ -498,7 +492,7 @@ def make_slides(df, data_dict, file_name):
     chart = chart_frame.chart
     # Add title to chart
     chart.has_title = True
-    chart.chart_title.text_frame.text = "Customers By Type"
+    chart.chart_title.text_frame.text = "Monthly Gross Profit"
     # Add legend
     chart.has_legend = True
     # Position legend at bottom
@@ -511,9 +505,9 @@ def make_slides(df, data_dict, file_name):
         series = chart.series[i]
         fill = series.format.fill
         fill.solid()
-        r = 38
-        g = 58
-        b = 26
+        r = 39
+        g = 63
+        b = 92
 
         red = max(0, min(255, 151 - i * r))
         green = max(0, min(255, 228 - i * g))
@@ -531,26 +525,22 @@ def make_slides(df, data_dict, file_name):
     # Remove gridlines
     value_axis.has_major_gridlines = False
 
+
     ### SLIDE 10 ##############################################
     # Charts
 
     slide10 = prs.slides.add_slide(prs.slide_layouts[6])
 
-    # CHART - CUSTOMERS buying insurance package
+    # CHART - CUSTOMERS
 
-    # Data for chart
-    new_customer = df['Insurance packages sold to new customers']
-    referred_customer = df['Insurance packages sold to referred customers']
-    lead_customer = df['Insurance packages sold to lead customers']
-    existing_customer = df['Insurance packages sold to existing customers']
+    # Data for chart 1
+    acc_profit = df['Acc. Gross Profit']
 
     # define chart and data
     chart_data = CategoryChartData()
     chart_data.categories = list(df['month'])
-    chart_data.add_series('new', new_customer)
-    chart_data.add_series('referred', referred_customer)
-    chart_data.add_series('lead', lead_customer)
-    chart_data.add_series('existing', existing_customer)
+    chart_data.add_series('Acc. Gross Profit', acc_profit)
+
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
     chart_frame = slide10.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
@@ -559,7 +549,7 @@ def make_slides(df, data_dict, file_name):
     chart = chart_frame.chart
     # Add title to chart
     chart.has_title = True
-    chart.chart_title.text_frame.text = "Customers Buying Insurance Package By Type"
+    chart.chart_title.text_frame.text = "Accumulated Gross Profit"
     # Add legend
     chart.has_legend = True
     # Position legend at bottom
@@ -572,9 +562,9 @@ def make_slides(df, data_dict, file_name):
         series = chart.series[i]
         fill = series.format.fill
         fill.solid()
-        r = 38
-        g = 58
-        b = 26
+        r = 39
+        g = 63
+        b = 92
 
         red = max(0, min(255, 151 - i * r))
         green = max(0, min(255, 228 - i * g))
@@ -597,13 +587,13 @@ def make_slides(df, data_dict, file_name):
 
     slide11 = prs.slides.add_slide(prs.slide_layouts[6])
 
-    # CHART - CUSTOMERS buying insurance package
+    # CHART - CUSTOMERS
 
-    # Data for chart
-    new_customer = df['Risk assessment pakages sold to new customers']
-    referred_customer = df['Risk assessment pakages sold to referred customers']
-    lead_customer = df['Risk assessment pakages sold to lead customers']
-    existing_customer = df['Risk assessment pakages sold to existing customers']
+    # Data for chart 1
+    new_customer = df['new customers']
+    referred_customer = df['referred customers']
+    lead_customer = df['lead customers']
+    existing_customer = df['existing customers']
 
     # define chart and data
     chart_data = CategoryChartData()
@@ -620,7 +610,7 @@ def make_slides(df, data_dict, file_name):
     chart = chart_frame.chart
     # Add title to chart
     chart.has_title = True
-    chart.chart_title.text_frame.text = "Customers Buying Risk Assessment Package By Type"
+    chart.chart_title.text_frame.text = "Customers By Type"
     # Add legend
     chart.has_legend = True
     # Position legend at bottom
@@ -661,6 +651,128 @@ def make_slides(df, data_dict, file_name):
     # CHART - CUSTOMERS buying insurance package
 
     # Data for chart
+    new_customer = df['Insurance packages sold to new customers']
+    referred_customer = df['Insurance packages sold to referred customers']
+    lead_customer = df['Insurance packages sold to lead customers']
+    existing_customer = df['Insurance packages sold to existing customers']
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = list(df['month'])
+    chart_data.add_series('new', new_customer)
+    chart_data.add_series('referred', referred_customer)
+    chart_data.add_series('lead', lead_customer)
+    chart_data.add_series('existing', existing_customer)
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide12.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers Buying Insurance Package By Type"
+    # Add legend
+    chart.has_legend = True
+    # Position legend at bottom
+    chart.legend.position = XL_LEGEND_POSITION.TOP
+    # Set font size for the legend
+    chart.legend.font.size = Pt(10)
+    chart.legend.include_in_layout = True
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(8)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+    ### SLIDE 13 ##############################################
+    # Charts
+
+    slide13 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - CUSTOMERS buying insurance package
+
+    # Data for chart
+    new_customer = df['Risk assessment pakages sold to new customers']
+    referred_customer = df['Risk assessment pakages sold to referred customers']
+    lead_customer = df['Risk assessment pakages sold to lead customers']
+    existing_customer = df['Risk assessment pakages sold to existing customers']
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = list(df['month'])
+    chart_data.add_series('new', new_customer)
+    chart_data.add_series('referred', referred_customer)
+    chart_data.add_series('lead', lead_customer)
+    chart_data.add_series('existing', existing_customer)
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide13.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers Buying Risk Assessment Package By Type"
+    # Add legend
+    chart.has_legend = True
+    # Position legend at bottom
+    chart.legend.position = XL_LEGEND_POSITION.TOP
+    # Set font size for the legend
+    chart.legend.font.size = Pt(10)
+    chart.legend.include_in_layout = True
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(8)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+    ### SLIDE 14 ##############################################
+    # Charts
+
+    slide14 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - CUSTOMERS buying insurance package
+
+    # Data for chart
     new_customer = df['SOC pakages sold to new customers']
     referred_customer = df['SOC pakages sold to referred customers']
     lead_customer = df['SOC pakages sold to lead customers']
@@ -675,7 +787,7 @@ def make_slides(df, data_dict, file_name):
     chart_data.add_series('existing', existing_customer)
     # add chart to slide
     x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
-    chart_frame = slide12.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+    chart_frame = slide14.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
 
     # Define chart object to manipulate the object characteristics
     chart = chart_frame.chart

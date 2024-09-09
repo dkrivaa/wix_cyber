@@ -123,7 +123,7 @@ def test():
         'All packages sold', 'Income from risk assessment packages', 'Income from SOC packages', 'Income from insurance packages',
         'Total income', 'Admin staff', 'Tele staff', 'Sales staff', 'Cyber staff', 'Logistics staff',
         'Total staff', 'Labor cost', 'Risk assessment packages cost', 'SOC packages cost', 'Marketing cost',
-        'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit',
+        'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit', 'Acc. Gross Profit',
     ])
 
     # Make slides
