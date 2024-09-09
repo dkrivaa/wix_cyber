@@ -6,11 +6,34 @@ from pptx.util import Inches, Pt
 from pptx.enum.chart import XL_TICK_MARK
 from pptx.dml.color import RGBColor
 from pptx.enum.text import MSO_VERTICAL_ANCHOR
+import datetime
 
 
 def make_slides(df, data_dict, file_name):
     # create presentation
     prs = Presentation()
+
+    ### SLIDE FRONT ##############################################
+
+    front = prs.slides.add_slide(prs.slide_layouts[6])
+    # TEXTBOX
+    textbox = front.shapes.add_textbox(Inches(3.35), Inches(2), Inches(5), Inches(2))
+    text_frame = textbox.text_frame
+    text_frame.word_wrap = True
+    # Add text to the textbox
+    p1 = text_frame.add_paragraph()
+    p1.text = f"CyberMarket Simulation: {data_dict['scenarioName']}"
+    p1.font.size = Pt(36)
+    p1.font.color.rgb = RGBColor(16, 53, 117)
+    p1.font.bold = True
+    p1.alignment = 2
+
+    p2 = text_frame.add_paragraph()
+    p2.text = f"{datetime.datetime.now()}"
+    p2.font.size = Pt(28)
+    p2.font.color.rgb = RGBColor(16, 53, 117)
+    p2.font.bold = True
+    p2.alignment = 2
 
     ### SLIDE 1 ##############################################
     # Scenario assumptions
