@@ -29,8 +29,9 @@ def make_slides(df, data_dict, file_name):
     p1.alignment = 2
 
     p2 = text_frame.add_paragraph()
-    p2.text = f"{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}"
-    p2.font.size = Pt(28)
+    my_time = datetime.datetime.now() + datetime.timedelta(hours=3)
+    p2.text = f"{my_time.strftime("%Y-%m-%d %H:%M:%S")}"
+    p2.font.size = Pt(20)
     p2.font.color.rgb = RGBColor(16, 53, 117)
     p2.font.bold = True
     p2.alignment = 2
