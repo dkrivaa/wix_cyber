@@ -105,7 +105,7 @@ def make_slides(df, data_dict, file_name):
 
     slide2 = prs.slides.add_slide(prs.slide_layouts[6])
 
-    # CHART 1 - CUSTOMERS
+    # CHART - CUSTOMERS
 
     # Data for chart 1
     new_customer = df['new customers']
@@ -160,6 +160,190 @@ def make_slides(df, data_dict, file_name):
     value_axis.tick_labels.number_format = '#,##0'
     # Remove gridlines
     value_axis.has_major_gridlines = False
+
+    ### SLIDE 3 ##############################################
+    # Charts
+
+    slide3 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - CUSTOMERS buying insurance package
+
+    # Data for chart
+    new_customer = df['Insurance packages sold to new customers']
+    referred_customer = df['Insurance packages sold to referred customers']
+    lead_customer = df['Insurance packages sold to lead customers']
+    existing_customer = df['Insurance packages sold to existing customers']
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = list(df['month'])
+    chart_data.add_series('new', new_customer)
+    chart_data.add_series('referred', referred_customer)
+    chart_data.add_series('lead', lead_customer)
+    chart_data.add_series('existing', existing_customer)
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide3.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers Buying Insurance Package By Type"
+    # Add legend
+    chart.has_legend = True
+    # Position legend at bottom
+    chart.legend.position = XL_LEGEND_POSITION.TOP
+    # Set font size for the legend
+    chart.legend.font.size = Pt(10)
+    chart.legend.include_in_layout = True
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(8)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+    ### SLIDE 4 ##############################################
+    # Charts
+
+    slide4 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - CUSTOMERS buying insurance package
+
+    # Data for chart
+    new_customer = df['Risk assessment pakages sold to new customers']
+    referred_customer = df['Risk assessment pakages sold to referred customers']
+    lead_customer = df['Risk assessment pakages sold to lead customers']
+    existing_customer = df['Risk assessment pakages sold to existing customers']
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = list(df['month'])
+    chart_data.add_series('new', new_customer)
+    chart_data.add_series('referred', referred_customer)
+    chart_data.add_series('lead', lead_customer)
+    chart_data.add_series('existing', existing_customer)
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide4.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers Buying Risk Assessment Package By Type"
+    # Add legend
+    chart.has_legend = True
+    # Position legend at bottom
+    chart.legend.position = XL_LEGEND_POSITION.TOP
+    # Set font size for the legend
+    chart.legend.font.size = Pt(10)
+    chart.legend.include_in_layout = True
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(8)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
+    ### SLIDE 5 ##############################################
+    # Charts
+
+    slide5 = prs.slides.add_slide(prs.slide_layouts[6])
+
+    # CHART - CUSTOMERS buying insurance package
+
+    # Data for chart
+    new_customer = df['SOC pakages sold to new customers']
+    referred_customer = df['SOC pakages sold to referred customers']
+    lead_customer = df['SOC pakages sold to lead customers']
+    existing_customer = df['SOC pakages sold to existing customers']
+
+    # define chart and data
+    chart_data = CategoryChartData()
+    chart_data.categories = list(df['month'])
+    chart_data.add_series('new', new_customer)
+    chart_data.add_series('referred', referred_customer)
+    chart_data.add_series('lead', lead_customer)
+    chart_data.add_series('existing', existing_customer)
+    # add chart to slide
+    x, y, chart_x, chart_y = Inches(0.5), Inches(1), Inches(9), Inches(6)
+    chart_frame = slide5.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, chart_x, chart_y, chart_data)
+
+    # Define chart object to manipulate the object characteristics
+    chart = chart_frame.chart
+    # Add title to chart
+    chart.has_title = True
+    chart.chart_title.text_frame.text = "Customers Buying SOC Package By Type"
+    # Add legend
+    chart.has_legend = True
+    # Position legend at bottom
+    chart.legend.position = XL_LEGEND_POSITION.TOP
+    # Set font size for the legend
+    chart.legend.font.size = Pt(10)
+    chart.legend.include_in_layout = True
+    # Customize colors of columns
+    for i in range(len(chart.series)):
+        series = chart.series[i]
+        fill = series.format.fill
+        fill.solid()
+        r = 38
+        g = 58
+        b = 26
+
+        red = max(0, min(255, 151 - i * r))
+        green = max(0, min(255, 228 - i * g))
+        blue = max(0, min(255, 100 - i * b))
+        fill.fore_color.rgb = RGBColor(red, green, blue)
+
+    # Set font size for category (X) axis
+    category_axis = chart.category_axis
+    category_axis.tick_labels.font.size = Pt(8)  # Set font size to 8 points
+    # Set font size for value (Y) axis
+    value_axis = chart.value_axis
+    value_axis.tick_labels.font.size = Pt(8)  # Set font size to 14 points
+    # Set number format
+    value_axis.tick_labels.number_format = '#,##0'
+    # Remove gridlines
+    value_axis.has_major_gridlines = False
+
 
     # Save the presentation to the given file path
     prs.save(file_name)
