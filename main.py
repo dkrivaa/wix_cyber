@@ -127,7 +127,7 @@ def test():
 
     remove_files()
     # Wait for a few seconds to ensure the deletions are processed
-    time.sleep(5)
+    # time.sleep(5)
 
     # Get simulation data and run simulation
     data_dict = get_data()
@@ -161,7 +161,6 @@ def test():
     format_excel_file('simulation.xlsx')
 
     # Save new EXCEL file with simulation results
-
     # Add the Excel file to the Git staging area
     subprocess.run(['git', 'add', 'simulation.xlsx'], check=True)
 
