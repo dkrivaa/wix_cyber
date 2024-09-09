@@ -127,7 +127,7 @@ def test():
 
     remove_files()
     # Wait for a few seconds to ensure the deletions are processed
-    # time.sleep(10)
+    time.sleep(5)
 
     # Get simulation data and run simulation
     data_dict = get_data()
