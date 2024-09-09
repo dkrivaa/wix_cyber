@@ -148,7 +148,7 @@ def make_slides(df, data_dict, file_name):
     chart = chart_frame.chart
     # Add title to chart
     chart.has_title = True
-    chart.chart_title.text_frame.text = "Gross Profit"
+    chart.chart_title.text_frame.text = "Annual Gross Profit"
     # Add legend
     chart.has_legend = False
 
@@ -161,9 +161,9 @@ def make_slides(df, data_dict, file_name):
         g = 58
         b = 26
 
-        red = max(0, min(255, 151 - i * r))
-        green = max(0, min(255, 228 - i * g))
-        blue = max(0, min(255, 100 - i * b))
+        red = max(0, min(255, 39 - i * r))
+        green = max(0, min(255, 63 - i * g))
+        blue = max(0, min(255, 92 - i * b))
         fill.fore_color.rgb = RGBColor(red, green, blue)
 
     # Set font size for category (X) axis
