@@ -107,7 +107,7 @@ def test():
         subprocess.run(['git', 'push'], check=True)
 
     # Wait for a few seconds to ensure the deletions are processed
-    time.sleep(5)
+    time.sleep(10)
 
     # Get simulation data and run simulation
     data_dict = get_data()
