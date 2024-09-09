@@ -84,8 +84,16 @@ def format_excel_file(file_path):
 def remove_files():
     # Check if 'simulation.xlsx' exists in the repository and delete
     if os.path.exists('simulation.xlsx'):
-        # Remove the file from the Git repository and stage the change
-        subprocess.run(['git', 'rm', 'simulation.xlsx'], check=True)
+        try:
+            # Remove the file from the Git repository and stage the change
+            subprocess.run(['git', 'rm', 'simulation.xlsx'], check=True)
+        except subprocess.CalledProcessError as e:
+            if 'did not match any files' in str(e):
+                # File does not exist, ignore the error
+                pass
+            else:
+                # Handle other errors
+                raise
 
         # Commit the deletion
         commit_message = 'Remove existing simulation.xlsx before generating a new one'
@@ -96,8 +104,16 @@ def remove_files():
 
     # Check if 'simulation.pptx' exists in the repository and delete
     if os.path.exists('simulation.pptx'):
-        # Remove the file from the Git repository and stage the change
-        subprocess.run(['git', 'rm', 'simulation.pptx'], check=True)
+        try:
+            # Remove the file from the Git repository and stage the change
+            subprocess.run(['git', 'rm', 'simulation.pptx'], check=True)
+        except subprocess.CalledProcessError as e:
+            if 'did not match any files' in str(e):
+                # File does not exist, ignore the error
+                pass
+            else:
+                # Handle other errors
+                raise
 
         # Commit the deletion
         commit_message = 'Remove existing simulation.pptx before generating a new one'
