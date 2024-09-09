@@ -494,7 +494,7 @@ def make_slides(df, data_dict, file_name):
     chart.has_title = True
     chart.chart_title.text_frame.text = "Monthly Gross Profit"
     # Add legend
-    chart.has_legend = True
+    chart.has_legend = False
     # Position legend at bottom
     chart.legend.position = XL_LEGEND_POSITION.TOP
     # Set font size for the legend
@@ -551,7 +551,7 @@ def make_slides(df, data_dict, file_name):
     chart.has_title = True
     chart.chart_title.text_frame.text = "Accumulated Gross Profit"
     # Add legend
-    chart.has_legend = True
+    chart.has_legend = False
     # Position legend at bottom
     chart.legend.position = XL_LEGEND_POSITION.TOP
     # Set font size for the legend
