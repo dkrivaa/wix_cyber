@@ -1,6 +1,7 @@
 import os
 import subprocess
 import pandas as pd
+import time
 
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
@@ -104,6 +105,9 @@ def test():
 
         # Push the deletion to the remote repository
         subprocess.run(['git', 'push'], check=True)
+
+    # Wait for a few seconds to ensure the deletions are processed
+    time.sleep(5)
 
     # Get simulation data and run simulation
     data_dict = get_data()
