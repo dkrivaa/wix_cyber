@@ -126,15 +126,15 @@ def test():
         'General overhead', 'Legal & Accounting cost', 'Total cost', 'Gross profit',
     ])
 
+    # Make slides
+    make_slides(df, data_dict, 'simulation.pptx')
+
     df = df.T
     df = df.reset_index()
     df.to_excel('simulation.xlsx', index=False, header=False)
 
     # Format Excel file
     format_excel_file('simulation.xlsx')
-
-    # Make slides
-    make_slides(df, data_dict, 'simulation.pptx')
 
     # Save new EXCEL file with simulation results
     # Add the Excel file to the Git staging area
