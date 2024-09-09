@@ -17,7 +17,7 @@ def make_slides(df, data_dict, file_name):
 
     front = prs.slides.add_slide(prs.slide_layouts[6])
     # TEXTBOX
-    textbox = front.shapes.add_textbox(Inches(2), Inches(2), Inches(7), Inches(2))
+    textbox = front.shapes.add_textbox(Inches(1), Inches(2), Inches(9), Inches(2))
     text_frame = textbox.text_frame
     text_frame.word_wrap = True
     # Add text to the textbox
